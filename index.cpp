@@ -3,6 +3,7 @@
 
 void index_snps(string inputBgenFile,string inputIndexFile){
 	//tell the user what we're doing
+	unsigned int count=0;
 	cout<<"\n\tIndexing Bgen file "<<inputBgenFile<<"..."<<endl;
 	//open bgen
 	bgen bGenFile(inputBgenFile);
@@ -19,6 +20,8 @@ void index_snps(string inputBgenFile,string inputIndexFile){
 		string aB=bGenFile.get_aB();
 		outFile<<varStart<<"\t"<<rsid<<"\t"<<pos<<"\t"<<aA<<"\t"<<aB<<endl;
 		varStart=bGenFile.input.tellg();
+                count++;
+                if(count==bGenFile.get_m()) break;
 	}
 }
 
