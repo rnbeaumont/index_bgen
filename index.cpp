@@ -69,11 +69,11 @@ void extract_snps(string inputBgenFile,string inputSampleFile,string inputIndexF
 			outputVector.push_back(fields[0]);
 		}
 		vsize=outputVector.size();
+        	if(vsize-1!=bGenFile.get_n()){
+	            cout<<"ERROR: Number of samples in sample file doesn't match that in the bgen file"<<endl;
+        	    exit (EXIT_FAILURE);
+	        }
 	}
-        if(vsize-1!=bGenFile.get_n()){
-            cout<<"ERROR: Number of samples in sample file doesn't match that in the bgen file"<<endl;
-            exit (EXIT_FAILURE);
-        }
 	//seek to each position and read the variant(s), store them in a vector for output. First do dosages, make it work then implement Gen
 	for(vector<streampos>::iterator i=SNP_positions.begin();i!=SNP_positions.end();++i){
 		bGenFile.seek(*i);	//seek to start of SNP
